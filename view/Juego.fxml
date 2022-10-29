@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.canvas.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.shape.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<Group xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.JuegoController">
+   <children>
+      <Label layoutX="309.0" layoutY="26.0" text="Snake Game" />
+      <Label layoutX="41.0" layoutY="26.0" text="Puntos" />
+      <Label fx:id="LblPuntos" layoutX="41.0" layoutY="47.0" text="00" />
+      <Button fx:id="startGame" layoutX="556.0" layoutY="21.0" mnemonicParsing="false" onAction="#empezarJuego" text="Start game" />
+      <Canvas fx:id="mapaJuego" height="700.0" layoutY="109.0" width="700.0" />
+   </children>
+</Group>
