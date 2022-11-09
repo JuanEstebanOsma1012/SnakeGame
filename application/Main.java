@@ -8,6 +8,7 @@ import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import utilities.Singleton;
 
 public class Main extends Application {
 
@@ -18,7 +19,10 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 
-		Parent root = FXMLLoader.load(new URL("file:\\C:\\Users\\usuario\\Documents\\Espacios_de_trabajo\\eclipseNeon_workspace\\Snake\\src\\view\\Menu.fxml"));
+		Singleton.getInstance().setPrimaryStage(primaryStage);
+		
+		Parent root = FXMLLoader.load(
+				new URL("file:\\C:\\Users\\usuario\\Documents\\Espacios_de_trabajo\\eclipseNeon_workspace\\Snake\\src\\view\\Menu.fxml"));
 		Scene scene = new Scene(root);
 		primaryStage.setScene(scene);
 		

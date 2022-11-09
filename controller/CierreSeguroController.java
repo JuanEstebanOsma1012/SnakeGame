@@ -1,64 +1,102 @@
 package controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.stage.Stage;
+import utilities.Singleton;
 
-public class CierreSeguroController {
+public class CierreSeguroController implements Initializable {
 
-    @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
-
-    @FXML
-    void salir(ActionEvent event) {
-
-    	salirAction(event);
-    	
-    }
+	JuegoController juegoController;
+	Stage beforeStage;
 
 	@FXML
-    void salirYGuardar(ActionEvent event) {
-
-    	guardarAction();
-    	salirAction(event);
-    	
-    }
+	private ResourceBundle resources;
 
 	@FXML
-    void cancelar(ActionEvent event) {
+	private URL location;
 
-    	cancelarAction(event);
-    	
-    }
-    
-    public void cancelarAction(ActionEvent event) {
+	@FXML
+	void salir(ActionEvent event) {
 
-    	((Stage) (((Node) event.getSource()).getScene().getWindow())).close();
-    	
+		salirAction();
+
 	}
 
-    public void salirAction(ActionEvent event) {
-    	
-    	Stage gameStage = (Stage) (((Node) event.getSource()).getScene().getWindow());
-    	
-    	
+	@FXML
+	void salirYGuardar(ActionEvent event) {
+
+		guardarAction();
+		salirAction();
+
 	}
-	
-    public void guardarAction() {
-		// TODO Auto-generated method stub
+
+	@FXML
+	void cancelar(ActionEvent event) {
+
+		cancelarAction();
+
+	}
+
+	public void cancelarAction() {
+
+		reanudarJuego();
+
+		Stage auxStage = Singleton.getInstance().getAuxStage();
+		auxStage.close();
+
+	}
+
+	public void salirAction() {
+
+		Stage currentStage = Singleton.getInstance().getAuxStage();
+
+		try {
+			juegoController.switchToMenu();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		
+		currentStage.close();
+
 	}
 
-    @FXML
-    void initialize() {
+	public void guardarAction() {
+		// TODO Auto-generated method stub
 
-    }
+	}
+
+	private void reanudarJuego() {
+
+		juegoController.reanudarTimeline();
+
+	}
+
+	public void setJuegoController(JuegoController juegoController) {
+		this.juegoController = juegoController;
+	}
+
+	public void setBeforeStage(Stage beforeStage) {
+		this.beforeStage = beforeStage;
+	}
+
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+
+		Stage auxStage = Singleton.getInstance().getAuxStage();
+
+		auxStage.setOnCloseRequest((event) -> {
+
+			event.consume();
+			cancelarAction();
+
+		});
+
+	}
 }
-

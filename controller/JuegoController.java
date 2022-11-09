@@ -27,14 +27,18 @@ import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import model.Map;
 import model.Snake;
+import utilities.Singleton;
 
 public class JuegoController implements Initializable {
 
-	Snake snake = new Snake();
-	Map map = new Map(snake);
+	Map map = Singleton.getInstance().getMap();
+	
 	GraphicMap gm;
 	Timeline timeline;
 	Direccion direccionAux;
+	
+	MenuController menuController;
+	CierreSeguroController cierreSeguroController;
 
 	@FXML
 	private Canvas mapaJuego;
@@ -47,7 +51,7 @@ public class JuegoController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-
+		
 		gm = new GraphicMap(mapaJuego, map);
 
 		gm.restartGraphicMap();
@@ -68,6 +72,19 @@ public class JuegoController implements Initializable {
 		}));
 		timeline.setCycleCount(Animation.INDEFINITE);
 
+		Stage currentStage = Singleton.getInstance().getPrimaryStage();
+		
+		currentStage.setOnCloseRequest((event) -> {
+			
+			event.consume();
+			try {
+				mostrarVentanaSeguraCierre();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+			
+		});
+		
 	}
 
 	@FXML
@@ -119,7 +136,7 @@ public class JuegoController implements Initializable {
 
 	}
 	
-	public void switchToMenu(Stage currentStage) throws IOException{
+	public void switchToMenu() throws IOException{
 		
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(new URL(
@@ -127,39 +144,55 @@ public class JuegoController implements Initializable {
 		
 		Parent root = loader.load();
 		
-		MenuController menuController = loader.getController();
+		menuController = loader.getController();
 		
 		Scene scene = new Scene(root);
+		
+		Stage currentStage = Singleton.getInstance().getPrimaryStage();
 
 		currentStage.setScene(scene);
-		currentStage.show();
 		currentStage.centerOnScreen();
 		
 	}
 
 	public void mostrarVentanaSeguraCierre() throws IOException {
 
-		Stage auxStage = new Stage();
+		frenarTimeline();
+		
+		Stage auxStage = Singleton.getInstance().getAuxStage();
 		
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(new URL("file:\\C:\\Users\\usuario\\Documents\\Espacios_de_trabajo\\eclipseNeon_workspace\\Snake\\src\\view\\CierreSeguro.fxml"));
 		
 		Parent root = loader.load();
-		
-		CierreSeguroController cierreSeguroController = loader.getController();
-		
 		Scene scene = new Scene(root);
 		
-		auxStage.setScene(scene);
+		CierreSeguroController cierreSeguroController = loader.getController();
+		cierreSeguroController.setJuegoController(this);
 		
-		auxStage.setOnCloseRequest((event) -> {
-			event.consume();
-			auxStage.close();
-		});
+		auxStage.setScene(scene);
 		
 		auxStage.centerOnScreen();
 		auxStage.showAndWait();
 		
+	}
+	
+	private void frenarTimeline() {
+
+		if (timeline.getStatus() == Animation.Status.RUNNING) {
+			timeline.pause();
+		}
+	}
+	
+	public void reanudarTimeline(){
+		
+		if (timeline.getStatus() == Animation.Status.PAUSED) {
+			timeline.play();
+		}
+	}
+
+	public Stage obtenerCurrentStage(ActionEvent event){
+		return (Stage) (((Node) event.getSource()).getScene().getWindow());
 	}
 
 }

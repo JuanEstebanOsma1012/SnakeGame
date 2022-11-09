@@ -15,8 +15,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import utilities.Singleton;
 
 public class MenuController implements Initializable {
+
+	JuegoController juegoController;
 
 	@FXML
 	private Button btnContinuarJuego;
@@ -46,46 +49,39 @@ public class MenuController implements Initializable {
 	void mejoresPuntuaciones(ActionEvent event) {
 
 	}
-	
+
 	private void iniciarJuegoAction(ActionEvent event) throws IOException {
 
-		Stage currentStage = (Stage) (((Node) event.getSource()).getScene().getWindow());
-		
-		switchToGame(currentStage);
+		switchToGame();
 
 	}
-	
-	public void switchToGame(Stage currentStage) throws IOException{
+
+	public void switchToGame() throws IOException {
 
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(new URL(
 				"file:\\C:\\Users\\usuario\\Documents\\Espacios_de_trabajo\\eclipseNeon_workspace\\Snake\\src\\view\\Juego.fxml"));
-		
+
 		Parent root = loader.load();
-		
-		JuegoController juegoController = loader.getController();
-		
 		Scene scene = new Scene(root);
 
-		currentStage.setOnCloseRequest((value) -> {
-
-			value.consume();
-			try {
-				juegoController.mostrarVentanaSeguraCierre();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-
-		});
+		Stage currentStage = Singleton.getInstance().getPrimaryStage();
 
 		currentStage.setScene(scene);
-		currentStage.show();
 		currentStage.centerOnScreen();
-		
+
+	}
+
+	public void setJuegoController(JuegoController juegoController) {
+		this.juegoController = juegoController;
 	}
 
 	@Override
-	public void initialize(URL location, ResourceBundle resources) {
+	public void initialize(URL arg0, ResourceBundle arg1) {
+
+		Stage currentStage = Singleton.getInstance().getPrimaryStage();
+
+		currentStage.setOnCloseRequest((event) -> {});
 
 	}
 
