@@ -37,32 +37,6 @@ public class MenuController implements Initializable {
 
 	}
 
-	private void iniciarJuegoAction(ActionEvent event) throws IOException {
-
-		Stage gameStage = (Stage) (((Node) event.getSource()).getScene().getWindow());
-
-		Parent root = FXMLLoader.load(new URL(
-				"file:\\C:\\Users\\usuario\\Documents\\Espacios_de_trabajo\\eclipseNeon_workspace\\Snake\\src\\view\\Juego.fxml"));
-		Scene scene = new Scene(root);
-
-		gameStage.setOnCloseRequest((value) -> {
-
-			value.consume();
-			mostrarVentanaSeguraCierre();
-
-		});
-
-		gameStage.setScene(scene);
-		gameStage.show();
-		gameStage.centerOnScreen();
-
-	}
-
-	private void mostrarVentanaSeguraCierre() {
-		// TODO Auto-generated method stub
-
-	}
-
 	@FXML
 	void opcionesJuego(ActionEvent event) {
 
@@ -71,6 +45,43 @@ public class MenuController implements Initializable {
 	@FXML
 	void mejoresPuntuaciones(ActionEvent event) {
 
+	}
+	
+	private void iniciarJuegoAction(ActionEvent event) throws IOException {
+
+		Stage currentStage = (Stage) (((Node) event.getSource()).getScene().getWindow());
+		
+		switchToGame(currentStage);
+
+	}
+	
+	public void switchToGame(Stage currentStage) throws IOException{
+
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(new URL(
+				"file:\\C:\\Users\\usuario\\Documents\\Espacios_de_trabajo\\eclipseNeon_workspace\\Snake\\src\\view\\Juego.fxml"));
+		
+		Parent root = loader.load();
+		
+		JuegoController juegoController = loader.getController();
+		
+		Scene scene = new Scene(root);
+
+		currentStage.setOnCloseRequest((value) -> {
+
+			value.consume();
+			try {
+				juegoController.mostrarVentanaSeguraCierre();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
+		});
+
+		currentStage.setScene(scene);
+		currentStage.show();
+		currentStage.centerOnScreen();
+		
 	}
 
 	@Override

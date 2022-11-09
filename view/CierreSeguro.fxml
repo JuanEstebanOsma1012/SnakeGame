@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="271.0" prefWidth="725.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="controller.CierreSeguroController">
+   <children>
+      <Button layoutX="170.0" layoutY="150.0" mnemonicParsing="false" onAction="#salir" text="solo salir" />
+      <Button layoutX="298.0" layoutY="150.0" mnemonicParsing="false" onAction="#salirYGuardar" text="salir y guardar" />
+      <Button layoutX="459.0" layoutY="150.0" mnemonicParsing="false" onAction="#cancelar" text="cancelar" />
+   </children>
+</AnchorPane>
