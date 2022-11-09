@@ -7,10 +7,10 @@
 
 <AnchorPane prefHeight="711.0" prefWidth="991.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MenuController">
    <children>
-      <Button fx:id="btnContinuarJuego" layoutX="453.0" layoutY="344.0" mnemonicParsing="false" onAction="#continuarJuego" text="Continuar" />
-      <Button layoutX="444.0" layoutY="293.0" mnemonicParsing="false" onAction="#iniciarJuego" text="Iniciar Juego" />
-      <Button layoutX="455.0" layoutY="395.0" mnemonicParsing="false" onAction="#opcionesJuego" text="Ver opciones" />
-      <Label layoutX="454.0" layoutY="154.0" text="Snake Game" />
-      <Button layoutX="412.0" layoutY="444.0" mnemonicParsing="false" onAction="#mejoresPuntuaciones" text="Ver mejores puntuaciones" />
+      <Button fx:id="btnContinuarJuego" layoutX="453.0" layoutY="340.0" mnemonicParsing="false" onAction="#continuarJuego" text="Continuar" />
+      <Button layoutX="444.0" layoutY="291.0" mnemonicParsing="false" onAction="#iniciarJuego" text="Iniciar Juego" />
+      <Button layoutX="454.0" layoutY="394.0" mnemonicParsing="false" onAction="#opcionesJuego" text="Opciones" />
+      <Label layoutX="454.0" layoutY="128.0" text="Snake Game" />
+      <Button layoutX="413.0" layoutY="449.0" mnemonicParsing="false" onAction="#mejoresPuntuaciones" text="Mejores puntuaciones" />
    </children>
 </AnchorPane>

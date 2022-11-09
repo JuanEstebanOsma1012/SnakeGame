@@ -22,7 +22,6 @@ import javafx.animation.KeyFrame;
 import model.Map;
 import model.Snake;
 
-
 public class JuegoController implements Initializable {
 
 	Snake snake = new Snake();
@@ -33,7 +32,7 @@ public class JuegoController implements Initializable {
 
 	@FXML
 	private Canvas mapaJuego;
-	
+
 	@FXML
 	private Label LblPuntos;
 
@@ -44,22 +43,25 @@ public class JuegoController implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 
 		gm = new GraphicMap(mapaJuego, map);
+
+		gm.restartGraphicMap();
 		
-		timeline = new Timeline(new KeyFrame(Duration.millis(100), e -> {
-			
+		timeline = new Timeline(new KeyFrame(Duration.millis(200), e -> {
+
 			map.setearDireccionCulebra(direccionAux);
-			
+
 			try {
 				map.moverSnake();
+				gm.restartGraphicMap();
 			} catch (GameOverException e1) {
-				timeline.stop();
+				
 				finalizarJuego();
+				timeline.stop();
 			}
-			gm.restartGraphicMap();
-			
+
 		}));
-        timeline.setCycleCount(Animation.INDEFINITE);
-		
+		timeline.setCycleCount(Animation.INDEFINITE);
+
 	}
 
 	@FXML
@@ -67,15 +69,15 @@ public class JuegoController implements Initializable {
 
 		setearEventoTeclado(event);
 		startGame.setDisable(true);
-		
-        timeline.play();
+
+		timeline.play();
 
 	}
 
 	private void finalizarJuego() {
 
 		System.out.println("hola mundo");
-			
+
 	}
 
 	private void setearEventoTeclado(ActionEvent event) {
@@ -105,28 +107,10 @@ public class JuegoController implements Initializable {
 					break;
 
 				}
-				
+
 			}
 		});
 
 	}
-	
-	public static void imprimirMapa(char[][] mapa) {
 
-		for (int x = 0; x < mapa.length; x++) {
-			System.out.print("|");
-			for (int y = 0; y < mapa[x].length; y++) {
-				System.out.print(mapa[x][y]);
-				if (y != mapa[x].length - 1)
-					System.out.print("  ");
-			}
-			System.out.println("|");
-		}
-
-	}
-
-	public static void limpiarConsola() {
-
-		System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-	}
 }

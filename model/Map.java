@@ -16,11 +16,11 @@ public class Map {
 		inicializarMapa();
 
 		generarNuevoPunto();
-		try {
-			recargarMapa();
-		} catch (GameOverException e) {
-			e.printStackTrace();
-		}
+//		try {
+//			recargarMapa();
+//		} catch (GameOverException e) {
+//			e.printStackTrace();
+//		}
 		
 	}
 
@@ -47,44 +47,44 @@ public class Map {
 		return map;
 	}
 
-	public void recargarMapa() throws GameOverException {
-		
-		aplanarMapa();
-		dibujarCulebra();
-		dibujarPunto();
-		
-	}
+//	public void recargarMapa() throws GameOverException {
+//		
+//		aplanarMapa();
+//		dibujarCulebra();
+//		dibujarPunto();
+//		
+//	}
 
-	private void dibujarPunto() {
-		map[punto.getPosicionY()][punto.getPosicionX()] = '+';
-	}
-
-	private void dibujarCulebra() throws GameOverException {
-		try {
-			
-			for (int i = 0; i < snake.getCuerposCulebra().size(); i++) {
-				map[snake.getCuerposCulebra().get(i).getPosicionY()][snake.getCuerposCulebra().get(i).getPosicionX()] = '-';
-			}
-			
-		} catch (ArrayIndexOutOfBoundsException e) {
-			throw new GameOverException();
-		}
-	}
-
-	private void aplanarMapa() {
-
-		for (int i = 0; i < map.length; i++) {
-			for (int j = 0; j < map[i].length; j++) {
-				map[i][j] = '*';
-			}
-		}
-	}
+//	private void dibujarPunto() {
+//		map[punto.getPosicionY()][punto.getPosicionX()] = '+';
+//	}
+//
+//	private void dibujarCulebra() throws GameOverException {
+//		try {
+//			
+//			for (int i = 0; i < snake.getCuerposCulebra().size(); i++) {
+//				map[snake.getCuerposCulebra().get(i).getPosicionY()][snake.getCuerposCulebra().get(i).getPosicionX()] = '-';
+//			}
+//			
+//		} catch (ArrayIndexOutOfBoundsException e) {
+//			throw new GameOverException();
+//		}
+//	}
+//
+//	private void aplanarMapa() {
+//
+//		for (int i = 0; i < map.length; i++) {
+//			for (int j = 0; j < map[i].length; j++) {
+//				map[i][j] = '*';
+//			}
+//		}
+//	}
 
 	public void moverSnake() throws GameOverException {
 
 		snake.moverCuerpo();
 		
-		if (verificarColisionConCuerpo() || verificarColisionConBorde()) {
+		if (snake.verificarColisionConCuerpo() || snake.verificarColisionConBorde()) {
 			throw new GameOverException();
 		} else {
 			
@@ -94,17 +94,9 @@ public class Map {
 				generarNuevoPunto();
 			}
 			
-			recargarMapa();
+//			recargarMapa();
 			
 		}
-	}
-
-	private boolean verificarColisionConCuerpo() {
-		return snake.verificarColisionConCuerpo();
-	}
-
-	private boolean verificarColisionConBorde() {
-		return snake.verificarColisionConBorde();
 	}
 
 	public void setearDireccionCulebra(Direccion direccion) {

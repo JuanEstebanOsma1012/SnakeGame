@@ -104,7 +104,7 @@ public class Snake {
 	}
 
 	public boolean verificarColisionConBorde() {
-		if (getCabeza().getPosicionX() >= Constants.DIMENSION_X || getCabeza().getPosicionY() >= Constants.DIMENSION_Y) {
+		if (getCabeza().getPosicionX() >= Constants.DIMENSION_X || getCabeza().getPosicionX() < 0 || getCabeza().getPosicionY() >= Constants.DIMENSION_Y || getCabeza().getPosicionY() < 0) {
 			return true;
 		}
 		return false;

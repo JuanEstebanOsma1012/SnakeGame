@@ -3,6 +3,7 @@ package auxiliaresGraficos;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Paint;
+import model.Cuerpo;
 import model.Map;
 import model.Point;
 import model.Snake;
@@ -42,25 +43,38 @@ public class GraphicMap {
 	private void dibujarCulebraGrafica() {
 		
 		Snake snakeAux = map.getSnake();
-		for (int i = 0; i < snakeAux.getCuerposCulebra().size(); i++) {
+		
+		dibujarCabezaGrafica(snakeAux.getCabeza());
+		
+		//pinta toda la culebra menos la cabeza
+		for (int i = 0; i < snakeAux.getCuerposCulebra().size() - 1; i++) {
+			
+			gc.setFill(Paint.valueOf("000000"));
+			gc.fillRoundRect(snakeAux.getCuerposCulebra().get(i).getPosicionX()*Constants.LONGITUD_CUADRADO, snakeAux.getCuerposCulebra().get(i).getPosicionY()*Constants.LONGITUD_CUADRADO, Constants.LONGITUD_CUADRADO, Constants.LONGITUD_CUADRADO, 20, 20);
 			
 			gc.setFill(Paint.valueOf("00ff00"));
-			gc.fillRoundRect(snakeAux.getCuerposCulebra().get(i).getPosicionX()*Constants.LONGITUD_CUADRADO, snakeAux.getCuerposCulebra().get(i).getPosicionY()*Constants.LONGITUD_CUADRADO, Constants.LONGITUD_CUADRADO, Constants.LONGITUD_CUADRADO, 20, 20);
+			gc.fillRoundRect(snakeAux.getCuerposCulebra().get(i).getPosicionX()*Constants.LONGITUD_CUADRADO + 2, snakeAux.getCuerposCulebra().get(i).getPosicionY()*Constants.LONGITUD_CUADRADO + 2, Constants.LONGITUD_CUADRADO - 4, Constants.LONGITUD_CUADRADO - 4, 20, 20);
 		}
 	}
 
-	private void aplanarMapaGrafico() {
+	private void dibujarCabezaGrafica(Cuerpo cuerpo) {
 
-		gc.setFill(Paint.valueOf("ff0000"));
-		gc.fillRoundRect(0, 0, graphicMap.getWidth(), graphicMap.getHeight(), 50, 50);
+		gc.setFill(Paint.valueOf("000000"));
+		gc.fillRoundRect(cuerpo.getPosicionX()*Constants.LONGITUD_CUADRADO, cuerpo.getPosicionY()*Constants.LONGITUD_CUADRADO, Constants.LONGITUD_CUADRADO, Constants.LONGITUD_CUADRADO, 20, 20);
 		
-//		for (int i = 0; i < map.getMap().length; i++) {
-//			for (int j = 0; j < map.getMap()[i].length; j++) {
-//				
-//				gc.setFill(Paint.valueOf("ff0000"));
-//				gc.fillRect(j*Constants.LONGITUD_CUADRADO, i*Constants.LONGITUD_CUADRADO, Constants.LONGITUD_CUADRADO, Constants.LONGITUD_CUADRADO);
-//			}
-//		}
+		gc.setFill(Paint.valueOf("00ff00"));
+		gc.fillRoundRect(cuerpo.getPosicionX()*Constants.LONGITUD_CUADRADO + 2,cuerpo.getPosicionY()*Constants.LONGITUD_CUADRADO + 2, Constants.LONGITUD_CUADRADO - 4, Constants.LONGITUD_CUADRADO - 4, 20, 20);
+		
+		gc.setFill(Paint.valueOf("000000"));
+		gc.fillOval(cuerpo.getPosicionX()*Constants.LONGITUD_CUADRADO + 15, cuerpo.getPosicionY()*Constants.LONGITUD_CUADRADO + 15, 20, 20);
+		
+	}
+
+	private void aplanarMapaGrafico() {
+		
+		gc.setFill(Paint.valueOf("ff0000"));
+		gc.fillRoundRect(0, 0, graphicMap.getWidth(), graphicMap.getHeight(), 20, 20);
+		
 	}
 
 	public Canvas getGraphicMap() {
