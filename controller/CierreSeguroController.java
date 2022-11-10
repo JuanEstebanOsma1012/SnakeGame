@@ -13,8 +13,7 @@ import utilities.Singleton;
 
 public class CierreSeguroController implements Initializable {
 
-	JuegoController juegoController;
-	Stage beforeStage;
+	Singleton singleton = Singleton.getInstance();
 
 	@FXML
 	private ResourceBundle resources;
@@ -24,47 +23,34 @@ public class CierreSeguroController implements Initializable {
 
 	@FXML
 	void salir(ActionEvent event) {
-
 		salirAction();
-
 	}
 
 	@FXML
 	void salirYGuardar(ActionEvent event) {
-
 		guardarAction();
 		salirAction();
-
 	}
 
 	@FXML
 	void cancelar(ActionEvent event) {
-
 		cancelarAction();
-
 	}
 
 	public void cancelarAction() {
-
-		reanudarJuego();
-
-		Stage auxStage = Singleton.getInstance().getAuxStage();
-		auxStage.close();
-
+		singleton.getGame().reanudarJuego();
+		singleton.getGame().cerrarCierreSeguro();
 	}
 
 	public void salirAction() {
 
-		Stage currentStage = Singleton.getInstance().getAuxStage();
-
 		try {
-			juegoController.switchToMenu();
+			singleton.getGame().switchToMenu();
+			singleton.getGame().cerrarCierreSeguro();
 		} catch (IOException e) {
+			singleton.getGame().errorFatal();
 			e.printStackTrace();
 		}
-		
-		currentStage.close();
-
 	}
 
 	public void guardarAction() {
@@ -72,31 +58,8 @@ public class CierreSeguroController implements Initializable {
 
 	}
 
-	private void reanudarJuego() {
-
-		juegoController.reanudarTimeline();
-
-	}
-
-	public void setJuegoController(JuegoController juegoController) {
-		this.juegoController = juegoController;
-	}
-
-	public void setBeforeStage(Stage beforeStage) {
-		this.beforeStage = beforeStage;
-	}
-
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-
-		Stage auxStage = Singleton.getInstance().getAuxStage();
-
-		auxStage.setOnCloseRequest((event) -> {
-
-			event.consume();
-			cancelarAction();
-
-		});
 
 	}
 }

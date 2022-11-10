@@ -1,12 +1,6 @@
 package application;
 
-import java.net.URL;
-
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Group;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 import utilities.Singleton;
 
@@ -19,14 +13,12 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 
-		Singleton.getInstance().setPrimaryStage(primaryStage);
+		Singleton singleton = Singleton.getInstance();
 		
-		Parent root = FXMLLoader.load(
-				new URL("file:\\C:\\Users\\usuario\\Documents\\Espacios_de_trabajo\\eclipseNeon_workspace\\Snake\\src\\view\\Menu.fxml"));
-		Scene scene = new Scene(root);
-		primaryStage.setScene(scene);
+		singleton.setGame(new Game(primaryStage));
+		singleton.getGame().switchToMenu();
+		singleton.getGame().desplegarVentanaPrincipal();
 		
-		primaryStage.show();
 	}
-
+	
 }

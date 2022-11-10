@@ -1,5 +1,6 @@
 package utilities;
 
+import application.Game;
 import javafx.stage.Stage;
 import model.Map;
 import model.Snake;
@@ -7,8 +8,7 @@ import model.Snake;
 public class Singleton {
 
 	Map map;
-	Stage primaryStage;
-	Stage auxStage;
+	Game game;
 
 	// ------------------------------ Singleton
 	// ------------------------------------------------
@@ -29,26 +29,17 @@ public class Singleton {
 		inicializarDatos();
 	}
 
-	private void inicializarDatos() {
-
-		map = new Map(new Snake());
-		auxStage = new Stage();
-		
+	private void inicializarDatos() {}
+	
+	public void setGame(Game game){
+		this.game = game;
+	}
+	
+	public Game getGame(){
+		return game;
 	}
 	
 	public Map getMap(){
 		return map;
-	}
-	
-	public void setPrimaryStage(Stage primaryStage){
-		this.primaryStage = primaryStage;
-	}
-	
-	public Stage getPrimaryStage(){
-		return primaryStage;
-	}
-	
-	public Stage getAuxStage(){
-		return auxStage;
 	}
 }

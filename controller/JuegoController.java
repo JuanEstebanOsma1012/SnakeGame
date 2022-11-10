@@ -31,7 +31,7 @@ import utilities.Singleton;
 
 public class JuegoController implements Initializable {
 
-	Map map = Singleton.getInstance().getMap();
+	Map map = new Map(new Snake());
 	
 	GraphicMap gm;
 	Timeline timeline;
@@ -71,19 +71,6 @@ public class JuegoController implements Initializable {
 
 		}));
 		timeline.setCycleCount(Animation.INDEFINITE);
-
-		Stage currentStage = Singleton.getInstance().getPrimaryStage();
-		
-		currentStage.setOnCloseRequest((event) -> {
-			
-			event.consume();
-			try {
-				mostrarVentanaSeguraCierre();
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			}
-			
-		});
 		
 	}
 
@@ -135,64 +122,9 @@ public class JuegoController implements Initializable {
 		});
 
 	}
-	
-	public void switchToMenu() throws IOException{
-		
-		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(new URL(
-				"file:\\C:\\Users\\usuario\\Documents\\Espacios_de_trabajo\\eclipseNeon_workspace\\Snake\\src\\view\\Menu.fxml"));
-		
-		Parent root = loader.load();
-		
-		menuController = loader.getController();
-		
-		Scene scene = new Scene(root);
-		
-		Stage currentStage = Singleton.getInstance().getPrimaryStage();
 
-		currentStage.setScene(scene);
-		currentStage.centerOnScreen();
-		
-	}
-
-	public void mostrarVentanaSeguraCierre() throws IOException {
-
-		frenarTimeline();
-		
-		Stage auxStage = Singleton.getInstance().getAuxStage();
-		
-		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(new URL("file:\\C:\\Users\\usuario\\Documents\\Espacios_de_trabajo\\eclipseNeon_workspace\\Snake\\src\\view\\CierreSeguro.fxml"));
-		
-		Parent root = loader.load();
-		Scene scene = new Scene(root);
-		
-		CierreSeguroController cierreSeguroController = loader.getController();
-		cierreSeguroController.setJuegoController(this);
-		
-		auxStage.setScene(scene);
-		
-		auxStage.centerOnScreen();
-		auxStage.showAndWait();
-		
-	}
-	
-	private void frenarTimeline() {
-
-		if (timeline.getStatus() == Animation.Status.RUNNING) {
-			timeline.pause();
-		}
-	}
-	
-	public void reanudarTimeline(){
-		
-		if (timeline.getStatus() == Animation.Status.PAUSED) {
-			timeline.play();
-		}
-	}
-
-	public Stage obtenerCurrentStage(ActionEvent event){
-		return (Stage) (((Node) event.getSource()).getScene().getWindow());
+	public Timeline getTimeline() {
+		return this.timeline;
 	}
 
 }
