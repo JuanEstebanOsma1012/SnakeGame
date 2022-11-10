@@ -1,6 +1,8 @@
 package model;
 
-public class Cuerpo {
+import java.io.Serializable;
+
+public class Cuerpo implements Serializable {
 
 	private int posicionX;
 	private int posicionY;

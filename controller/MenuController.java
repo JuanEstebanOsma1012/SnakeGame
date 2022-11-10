@@ -23,7 +23,16 @@ public class MenuController implements Initializable {
 
 	@FXML
 	void continuarJuego(ActionEvent event) {
-		continuarJuegoAction();
+		try {
+			continuarJuegoAction();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (JuegoNoGuardadoException e) {
+
+			System.out.println("mal");
+			
+			e.printStackTrace();
+		}
 	}
 
 	@FXML
@@ -41,10 +50,12 @@ public class MenuController implements Initializable {
 
 	}
 	
-	private void continuarJuegoAction() {
+	private void continuarJuegoAction() throws ClassNotFoundException, JuegoNoGuardadoException {
 
 		try {
-			singleton.getGame().switchToGame();
+			singleton.getGame().setMap(GamePersistanceManager.deserializarMapa());
+			
+			singleton.getGame().switchToGameSaved();
 		} catch (IOException e) {
 
 			singleton.getGame().errorFatal();
@@ -68,16 +79,7 @@ public class MenuController implements Initializable {
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-
-		try {
-			
-			map = GamePersistanceManager.deserializarMapa();
-			
-		} catch (JuegoNoGuardadoException e) {
-			btnContinuarJuego.setDisable(true);
-		} catch (Exception e){
-			e.printStackTrace();
-		}
+		
 
 	}
 

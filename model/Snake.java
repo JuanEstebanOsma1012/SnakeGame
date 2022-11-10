@@ -1,11 +1,12 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import enums.Direccion;
 import utilities.Constants;
 
-public class Snake {
+public class Snake implements Serializable {
 
 	private Direccion direccion;
 	private ArrayList<Cuerpo> cuerposCulebra = new ArrayList<Cuerpo>();

@@ -1,10 +1,12 @@
 package model;
 
+import java.io.Serializable;
+
 import enums.Direccion;
 import exceptions.GameOverException;
 import utilities.Constants;
 
-public class Map {
+public class Map implements Serializable {
 
 	private char[][] map;
 	private Snake snake;

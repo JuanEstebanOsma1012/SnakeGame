@@ -1,7 +1,5 @@
 package controller;
 
-import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -12,26 +10,21 @@ import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
-import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import model.Map;
 import model.Snake;
-import utilities.Singleton;
 
 public class JuegoController implements Initializable {
 
-	Map map;
+	Map map = new Map(new Snake());
 	
 	GraphicMap gm;
 	Timeline timeline;
@@ -51,12 +44,6 @@ public class JuegoController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		
-		if (hayMapaCargado()) {
-			map = obtenerMapaCargado();
-		} else {
-			map = new Map(new Snake());
-		}
 		
 		gm = new GraphicMap(mapaJuego, map);
 
@@ -131,6 +118,18 @@ public class JuegoController implements Initializable {
 
 	public Timeline getTimeline() {
 		return this.timeline;
+	}
+	
+	public void setMap(Map map){
+		this.map = map;
+		
+		gm.setMap(map);
+		gm.restartGraphicMap();
+		
+	}
+
+	public Map getMap() {
+		return map;
 	}
 
 }

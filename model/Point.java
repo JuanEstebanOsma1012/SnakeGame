@@ -1,6 +1,8 @@
 package model;
 
-public class Point {
+import java.io.Serializable;
+
+public class Point implements Serializable {
 
 	private int posicionX;
 	private int posicionY;

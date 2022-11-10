@@ -71,6 +71,10 @@ public class GameWindowsManager {
 	public Map getMap(){
 		return this.map;
 	}
+	
+	public void setMap(Map map){
+		this.map = map;
+	}
 
 	public FXMLLoader getMenuLoader() {
 		return menuLoader;
@@ -129,6 +133,7 @@ public class GameWindowsManager {
 			restartGameLoader();
 
 			Scene scene = new Scene((Parent) gameLoader.load());
+			
 			primaryStage.setScene(scene);
 			primaryStage.centerOnScreen();
 
@@ -153,27 +158,15 @@ public class GameWindowsManager {
 		}
 	}
 
-	public void switchToGame(Map map) throws IOException {
-
-		if (primaryStage != null && gameLoader != null) {
-
-			restartGameLoader();
-
-			Scene scene = new Scene((Parent) gameLoader.load());
-			primaryStage.setScene(scene);
-			primaryStage.centerOnScreen();
-
-			setearEventoCierreSeguro();
-		}
-		
-	}
-
 	private void setearEventoCierreSeguro() {
 
 		primaryStage.setOnCloseRequest((event) -> {
 
 			event.consume();
 			try {
+				
+				this.map = ((JuegoController) gameLoader.getController()).getMap();
+				
 				frenarJuego();
 				openExitAssistant();
 			} catch (IOException e) {
@@ -254,6 +247,26 @@ public class GameWindowsManager {
 
 	public void cerrarCierreSeguro() {
 		exitAlertStage.close();
+	}
+
+	public void switchToGameSaved() throws IOException {
+
+		if (primaryStage != null && gameLoader != null) {
+
+			restartGameLoader();
+
+			Scene scene = new Scene((Parent) gameLoader.load());
+			
+			JuegoController juegoController = gameLoader.getController();
+			juegoController.setMap(map);
+			
+			primaryStage.setScene(scene);
+			primaryStage.centerOnScreen();
+
+			setearEventoCierreSeguro();
+			
+		}
+		
 	}
 
 }

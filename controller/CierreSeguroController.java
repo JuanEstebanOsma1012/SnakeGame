@@ -56,7 +56,11 @@ public class CierreSeguroController implements Initializable {
 
 	public void guardarAction() {
 
-		GamePersistanceManager.serializarMapa(map);
+		try {
+			GamePersistanceManager.serializarMapa(singleton.getGame().getMap());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		
 	}
 
