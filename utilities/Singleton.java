@@ -1,6 +1,6 @@
 package utilities;
 
-import application.Game;
+import application.GameWindowsManager;
 import javafx.stage.Stage;
 import model.Map;
 import model.Snake;
@@ -8,7 +8,7 @@ import model.Snake;
 public class Singleton {
 
 	Map map;
-	Game game;
+	GameWindowsManager game;
 
 	// ------------------------------ Singleton
 	// ------------------------------------------------
@@ -31,11 +31,11 @@ public class Singleton {
 
 	private void inicializarDatos() {}
 	
-	public void setGame(Game game){
+	public void setGame(GameWindowsManager game){
 		this.game = game;
 	}
 	
-	public Game getGame(){
+	public GameWindowsManager getGame(){
 		return game;
 	}
 	

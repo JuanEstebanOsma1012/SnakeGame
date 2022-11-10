@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import auxiliaresGraficos.GraphicMap;
 import controller.JuegoController;
+import exceptions.JuegoNoGuardadoException;
 import javafx.animation.Animation;
 import javafx.animation.Timeline;
 import javafx.fxml.FXMLLoader;
@@ -12,17 +14,21 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import model.Map;
+import persistencia.GamePersistanceManager;
 
-public class Game {
+public class GameWindowsManager {
 
 	Stage primaryStage;
 	Stage exitAlertStage;
+	
+	Map map;
 
 	FXMLLoader menuLoader;
 	FXMLLoader gameLoader;
 	FXMLLoader cierreSeguroLoader;
 
-	public Game(Stage primaryStage) throws MalformedURLException {
+	public GameWindowsManager(Stage primaryStage) throws MalformedURLException {
 
 		menuLoader = new FXMLLoader(new URL(
 				"file:\\C:\\Users\\usuario\\Documents\\Espacios_de_trabajo\\eclipseNeon_workspace\\Snake\\src\\view\\Menu.fxml"));
@@ -60,6 +66,10 @@ public class Game {
 
 	public Stage getExitAlertStage() {
 		return exitAlertStage;
+	}
+	
+	public Map getMap(){
+		return this.map;
 	}
 
 	public FXMLLoader getMenuLoader() {
@@ -123,7 +133,39 @@ public class Game {
 			primaryStage.centerOnScreen();
 
 			setearEventoCierreSeguro();
+			
 		}
+	}
+	
+	private void cargarMapa() {
+		
+		try {
+			this.map = GamePersistanceManager.deserializarMapa();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JuegoNoGuardadoException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public void switchToGame(Map map) throws IOException {
+
+		if (primaryStage != null && gameLoader != null) {
+
+			restartGameLoader();
+
+			Scene scene = new Scene((Parent) gameLoader.load());
+			primaryStage.setScene(scene);
+			primaryStage.centerOnScreen();
+
+			setearEventoCierreSeguro();
+		}
+		
 	}
 
 	private void setearEventoCierreSeguro() {

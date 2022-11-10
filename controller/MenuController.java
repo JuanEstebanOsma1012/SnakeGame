@@ -4,10 +4,14 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import auxiliaresGraficos.GraphicMap;
+import exceptions.JuegoNoGuardadoException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import model.Map;
+import persistencia.GamePersistanceManager;
 import utilities.Singleton;
 
 public class MenuController implements Initializable {
@@ -19,12 +23,12 @@ public class MenuController implements Initializable {
 
 	@FXML
 	void continuarJuego(ActionEvent event) {
-
+		continuarJuegoAction();
 	}
 
 	@FXML
 	void iniciarJuego(ActionEvent event) {
-		iniciarJuegoAction(event);
+		iniciarJuegoAction();
 	}
 
 	@FXML
@@ -36,8 +40,21 @@ public class MenuController implements Initializable {
 	void mejoresPuntuaciones(ActionEvent event) {
 
 	}
+	
+	private void continuarJuegoAction() {
 
-	private void iniciarJuegoAction(ActionEvent event) {
+		try {
+			singleton.getGame().switchToGame();
+		} catch (IOException e) {
+
+			singleton.getGame().errorFatal();
+			
+			e.printStackTrace();
+		}
+		
+	}
+
+	private void iniciarJuegoAction() {
 
 		try {
 			singleton.getGame().switchToGame();
@@ -52,7 +69,15 @@ public class MenuController implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
-		
+		try {
+			
+			map = GamePersistanceManager.deserializarMapa();
+			
+		} catch (JuegoNoGuardadoException e) {
+			btnContinuarJuego.setDisable(true);
+		} catch (Exception e){
+			e.printStackTrace();
+		}
 
 	}
 

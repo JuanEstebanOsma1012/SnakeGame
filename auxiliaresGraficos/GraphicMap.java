@@ -1,5 +1,7 @@
 package auxiliaresGraficos;
 
+import java.io.Serializable;
+
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Paint;
@@ -9,7 +11,7 @@ import model.Point;
 import model.Snake;
 import utilities.Constants;
 
-public class GraphicMap {
+public class GraphicMap implements Serializable {
 
 	Canvas graphicMap;
 	GraphicsContext gc;
@@ -21,6 +23,8 @@ public class GraphicMap {
 		
 		this.gc = graphicMap.getGraphicsContext2D();
 	}
+	
+	
 
 	public void restartGraphicMap(){
 		

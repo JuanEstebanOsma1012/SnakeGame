@@ -15,7 +15,7 @@ public class Main extends Application {
 
 		Singleton singleton = Singleton.getInstance();
 		
-		singleton.setGame(new Game(primaryStage));
+		singleton.setGame(new GameWindowsManager(primaryStage));
 		singleton.getGame().switchToMenu();
 		singleton.getGame().desplegarVentanaPrincipal();
 		

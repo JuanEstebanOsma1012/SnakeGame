@@ -31,7 +31,7 @@ import utilities.Singleton;
 
 public class JuegoController implements Initializable {
 
-	Map map = new Map(new Snake());
+	Map map;
 	
 	GraphicMap gm;
 	Timeline timeline;
@@ -51,6 +51,12 @@ public class JuegoController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		
+		if (hayMapaCargado()) {
+			map = obtenerMapaCargado();
+		} else {
+			map = new Map(new Snake());
+		}
 		
 		gm = new GraphicMap(mapaJuego, map);
 

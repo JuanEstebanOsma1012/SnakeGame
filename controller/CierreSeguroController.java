@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.stage.Stage;
+import persistencia.GamePersistanceManager;
 import utilities.Singleton;
 
 public class CierreSeguroController implements Initializable {
@@ -54,8 +55,9 @@ public class CierreSeguroController implements Initializable {
 	}
 
 	public void guardarAction() {
-		// TODO Auto-generated method stub
 
+		GamePersistanceManager.serializarMapa(map);
+		
 	}
 
 	@Override
