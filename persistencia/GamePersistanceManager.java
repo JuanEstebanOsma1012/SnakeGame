@@ -14,7 +14,7 @@ public class GamePersistanceManager {
 	
 	public static void serializarMapa(Map map) throws IOException{
 		
-		File file = new File("C:\\Users\\usuario\\Documents\\Espacios_de_trabajo\\eclipseNeon_workspace\\Snake\\src\\datos\\SnakeData.xml");
+		File file = new File("C:\\Users\\usuario\\Documents\\Espacios_de_trabajo\\eclipseNeon_workspace\\Snake\\src\\datos\\SnakeData.dat");
 		
 		if (file.exists()) {
 			file.createNewFile();
@@ -30,7 +30,7 @@ public class GamePersistanceManager {
 	
 	public static Map deserializarMapa() throws IOException, ClassNotFoundException, JuegoNoGuardadoException {
 		
-		File file = new File("C:\\Users\\usuario\\Documents\\Espacios_de_trabajo\\eclipseNeon_workspace\\Snake\\src\\datos\\SnakeData.xml");
+		File file = new File("C:\\Users\\usuario\\Documents\\Espacios_de_trabajo\\eclipseNeon_workspace\\Snake\\src\\datos\\SnakeData.dat");
 		if (file.exists()) {
 			
 			ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(file));
