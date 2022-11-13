@@ -1,16 +1,99 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="711.0" prefWidth="991.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MenuController">
+<AnchorPane prefHeight="615.0" prefWidth="615.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MenuController">
    <children>
-      <Button fx:id="btnContinuarJuego" layoutX="453.0" layoutY="340.0" mnemonicParsing="false" onAction="#continuarJuego" text="Continuar" />
-      <Button layoutX="444.0" layoutY="291.0" mnemonicParsing="false" onAction="#iniciarJuego" text="Iniciar Juego" />
-      <Button layoutX="454.0" layoutY="394.0" mnemonicParsing="false" onAction="#opcionesJuego" text="Opciones" />
-      <Label layoutX="454.0" layoutY="128.0" text="Snake Game" />
-      <Button layoutX="413.0" layoutY="449.0" mnemonicParsing="false" onAction="#mejoresPuntuaciones" text="Mejores puntuaciones" />
+      <ImageView fitHeight="617.0" fitWidth="624.0" layoutX="-6.0">
+         <image>
+            <Image url="@FondoNegro.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="91.0" fitWidth="144.0" layoutX="16.0" layoutY="14.0">
+         <image>
+            <Image url="@snake.jpg" />
+         </image>
+      </ImageView>
+      <Button fx:id="btnContinuarJuego" layoutX="226.0" layoutY="308.0" mnemonicParsing="false" onAction="#continuarJuego" text="Continuar">
+         <font>
+            <Font name="Consolas" size="24.0" />
+         </font>
+         <effect>
+            <Lighting diffuseConstant="1.37">
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant color="#36e8f5" />
+               </light>
+            </Lighting>
+         </effect></Button>
+      <Button layoutX="160.0" layoutY="172.0" mnemonicParsing="false" onAction="#iniciarJuego" text="Iniciar Juego Nuevo">
+         <font>
+            <Font name="Consolas" size="24.0" />
+         </font>
+         <effect>
+            <Lighting diffuseConstant="1.37">
+               <bumpInput>
+                  <Shadow blurType="GAUSSIAN" color="WHITE" height="76.98" radius="23.995" />
+               </bumpInput>
+               <light>
+                  <Light.Distant color="#24ffc8" />
+               </light>
+            </Lighting>
+         </effect></Button>
+      <Button layoutX="233.0" layoutY="413.0" mnemonicParsing="false" onAction="#opcionesJuego" text="Opciones">
+         <font>
+            <Font name="Consolas" size="24.0" />
+         </font>
+         <effect>
+            <Lighting diffuseConstant="1.37">
+               <bumpInput>
+                  <Shadow color="#fffdfd" radius="4.75" width="0.0" />
+               </bumpInput>
+               <light>
+                  <Light.Distant color="#ff0707" />
+               </light>
+            </Lighting>
+         </effect></Button>
+      <Label layoutX="197.0" layoutY="14.0" text="La culebrita">
+         <font>
+            <Font name="Arial Narrow" size="52.0" />
+         </font>
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#00fffb" />
+                  <Stop color="#00fffb" offset="0.007246376811594203" />
+                  <Stop color="#07fc1f" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill></Label>
+      <Button layoutX="127.0" layoutY="515.0" mnemonicParsing="false" onAction="#mejoresPuntuaciones" text="Ver Mejores puntuaciones">
+         <font>
+            <Font name="Consolas" size="24.0" />
+         </font>
+         <effect>
+            <Lighting diffuseConstant="1.37">
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant color="#f7e82d" />
+               </light>
+            </Lighting>
+         </effect></Button>
+      <ImageView fitHeight="91.0" fitWidth="144.0" layoutX="457.0" layoutY="14.0">
+         <image>
+            <Image url="@snake.jpg" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

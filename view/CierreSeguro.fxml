@@ -12,7 +12,7 @@
    <children>
       <ImageView fitHeight="271.0" fitWidth="725.0">
          <image>
-            <Image url="@../../../../../Pictures/FONDO-NEGRO-1160x653-2577927919.jpg" />
+            <Image url="@FondoNegro.jpg" />
          </image>
       </ImageView>
       <Button layoutX="91.0" layoutY="80.0" mnemonicParsing="false" onAction="#salir" text="Volvér sin guardar">

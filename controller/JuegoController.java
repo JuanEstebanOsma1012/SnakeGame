@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 import javax.swing.JOptionPane;
 
 import auxiliaresGraficos.GraphicMap;
+import datos.MejoresPuntuaciones;
 import enums.Direccion;
 import exceptions.GameOverException;
 import javafx.animation.Timeline;
@@ -23,9 +24,13 @@ import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import model.Map;
 import model.Snake;
+import utilities.Singleton;
 
 public class JuegoController implements Initializable {
-
+	
+	Singleton singleton = Singleton.getInstance();
+	MejoresPuntuaciones mejoresPuntuaciones = singleton.getMejoresPuntuaciones();
+	
 	Map map = new Map(new Snake());
 	
 	GraphicMap gm;
@@ -40,18 +45,21 @@ public class JuegoController implements Initializable {
 
 	@FXML
 	private Label LblPuntos;
-
+	
+	@FXML
+	private Label lblPlayer;
+	
 	@FXML
 	private Button startGame;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		
+		lblPlayer.setText(singleton.getOpciones().getUsuarioSeleccionado().getName());
 		gm = new GraphicMap(mapaJuego, map);
 
 		gm.restartGraphicMap();
 		
-		timeline = new Timeline(new KeyFrame(Duration.millis(200), e -> {
+		timeline = new Timeline(new KeyFrame(Duration.millis(singleton.getVelocidad()), e -> {
 
 			map.setearDireccionCulebra(direccionAux);
 
@@ -65,6 +73,7 @@ public class JuegoController implements Initializable {
 				
 				finalizarJuego();
 				timeline.stop();
+				guardarPuntos();
 			}
 
 		}));
@@ -83,9 +92,21 @@ public class JuegoController implements Initializable {
 	}
 
 	private void finalizarJuego() {
-
+		
+		
+		
+		
 		JOptionPane.showMessageDialog(null, "GAME OVER");
+		
 
+	}
+
+	private void guardarPuntos() {
+		Integer puntuacionFinal = map.getCantidadPuntos();
+		String puntuacionFinalAux = puntuacionFinal.toString();
+		mejoresPuntuaciones.setTextoEscritura(puntuacionFinalAux);
+		mejoresPuntuaciones.guardarPuntuaciones();
+		
 	}
 
 	private void setearEventoTeclado(ActionEvent event) {

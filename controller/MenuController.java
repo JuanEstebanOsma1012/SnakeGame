@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javax.swing.JOptionPane;
+
 import auxiliaresGraficos.GraphicMap;
 import exceptions.JuegoNoGuardadoException;
 import javafx.event.ActionEvent;
@@ -17,7 +19,10 @@ import utilities.Singleton;
 public class MenuController implements Initializable {
 
 	Singleton singleton = Singleton.getInstance();
-
+	
+	boolean perfil = false;
+	
+	
 	@FXML
 	private Button btnContinuarJuego;
 
@@ -37,12 +42,27 @@ public class MenuController implements Initializable {
 
 	@FXML
 	void iniciarJuego(ActionEvent event) {
-		iniciarJuegoAction();
+		
+		this.perfil = singleton.getOpciones().getHayUsuarios();
+		
+		if (perfil == true && singleton.getOpciones().getUsuarioSeleccionado() != null){
+			iniciarJuegoAction();
+		}else{
+			JOptionPane.showMessageDialog(null, "Tienes que escoger tu perfil en 'OPCIONES' ");
+		}
+		
 	}
 
 	@FXML
 	void opcionesJuego(ActionEvent event) {
-
+		try {
+			singleton.getGame().switchToOpciones();
+		} catch (IOException e) {
+			System.out.println("error al ir a opciones");
+			e.printStackTrace();
+		}
+		
+		
 	}
 
 	@FXML

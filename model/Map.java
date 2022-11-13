@@ -13,6 +13,8 @@ public class Map implements Serializable {
 	private Point punto;
 	private int cantidadPuntos;
 
+	
+	
 	public Map(Snake snake) {
 
 		this.snake = snake;
@@ -55,6 +57,8 @@ public class Map implements Serializable {
 	public Snake getSnake(){
 		return snake;
 	}
+	
+	
 
 	public char[][] getMap() {
 		return map;
