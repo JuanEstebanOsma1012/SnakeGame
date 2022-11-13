@@ -52,7 +52,7 @@ public class MejoresPuntuacionesController {
 	    void initialize() {
 	        assert btnVolverPuntiacion != null : "fx:id=\"btnVolverPuntiacion\" was not injected: check your FXML file 'MejoresPuntuaciones.fxml'.";
 	        assert txtAreaPuntuacion != null : "fx:id=\"txtAreaPuntuacion\" was not injected: check your FXML file 'MejoresPuntuaciones.fxml'.";
-
+	        txtAreaPuntuacion.setText(mejoresPuntuaciones.leerPuntuaciones());
 	    }
 	}
 
