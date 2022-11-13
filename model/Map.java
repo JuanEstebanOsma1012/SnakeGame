@@ -11,6 +11,7 @@ public class Map implements Serializable {
 	private char[][] map;
 	private Snake snake;
 	private Point punto;
+	private int cantidadPuntos;
 
 	public Map(Snake snake) {
 
@@ -37,6 +38,16 @@ public class Map implements Serializable {
 		}
 	}
 	
+	
+	
+	public int getCantidadPuntos() {
+		return cantidadPuntos;
+	}
+
+	public void setCantidadPuntos(int cantidadPuntos) {
+		this.cantidadPuntos = cantidadPuntos;
+	}
+
 	public Point getPunto(){
 		return punto;
 	}
@@ -85,7 +96,9 @@ public class Map implements Serializable {
 	public void moverSnake() throws GameOverException {
 
 		snake.moverCuerpo();
-		
+		if (verificarCabezaEnPunto()){
+			this.cantidadPuntos ++;
+		}
 		if (snake.verificarColisionConCuerpo() || snake.verificarColisionConBorde()) {
 			throw new GameOverException();
 		} else {
@@ -122,10 +135,14 @@ public class Map implements Serializable {
 				&& snake.getCabeza().getPosicionY() == punto.getPosicionY()) {
 
 			return true;
+		}else{
+			return false;
 		}
 
-		return false;
+		
 
 	}
+	
+	
 
 }

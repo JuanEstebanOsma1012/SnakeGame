@@ -31,11 +31,11 @@ public class GameWindowsManager {
 	public GameWindowsManager(Stage primaryStage) throws MalformedURLException {
 
 		menuLoader = new FXMLLoader(new URL(
-				"file:\\C:\\Users\\usuario\\Documents\\Espacios_de_trabajo\\eclipseNeon_workspace\\Snake\\src\\view\\Menu.fxml"));
+				"file:\\C:\\Users\\ljane\\OneDrive\\Documentos\\Programas de eclipse\\SnakeGame_Osma_Santi_Naty_JulianC\\src\\view\\Menu.fxml"));
 		gameLoader = new FXMLLoader(new URL(
-				"file:\\C:\\Users\\usuario\\Documents\\Espacios_de_trabajo\\eclipseNeon_workspace\\Snake\\src\\view\\Juego.fxml"));
+				"file:\\C:\\Users\\ljane\\OneDrive\\Documentos\\Programas de eclipse\\SnakeGame_Osma_Santi_Naty_JulianC\\src\\view\\Juego.fxml"));
 		cierreSeguroLoader = new FXMLLoader(new URL(
-				"file:\\C:\\Users\\usuario\\Documents\\Espacios_de_trabajo\\eclipseNeon_workspace\\Snake\\src\\view\\CierreSeguro.fxml"));
+				"file:\\C:\\Users\\ljane\\OneDrive\\Documentos\\Programas de eclipse\\SnakeGame_Osma_Santi_Naty_JulianC\\src\\view\\CierreSeguro.fxml"));
 
 		this.primaryStage = primaryStage;
 
@@ -46,18 +46,18 @@ public class GameWindowsManager {
 
 	public void restartMenuLoader() throws MalformedURLException {
 		menuLoader = new FXMLLoader(new URL(
-				"file:\\C:\\Users\\usuario\\Documents\\Espacios_de_trabajo\\eclipseNeon_workspace\\Snake\\src\\view\\Menu.fxml"));
+				"file:\\C:\\Users\\ljane\\OneDrive\\Documentos\\Programas de eclipse\\SnakeGame_Osma_Santi_Naty_JulianC\\src\\view\\Menu.fxml"));
 	}
 
 	public void restartGameLoader() throws MalformedURLException {
 		
 		gameLoader = new FXMLLoader(new URL(
-				"file:\\C:\\Users\\usuario\\Documents\\Espacios_de_trabajo\\eclipseNeon_workspace\\Snake\\src\\view\\Juego.fxml"));
+				"file:\\C:\\Users\\ljane\\OneDrive\\Documentos\\Programas de eclipse\\SnakeGame_Osma_Santi_Naty_JulianC\\src\\view\\Juego.fxml"));
 	}
 
 	public void restartCierreSeguroLoader() throws MalformedURLException {
 		cierreSeguroLoader = new FXMLLoader(new URL(
-				"file:\\C:\\Users\\usuario\\Documents\\Espacios_de_trabajo\\eclipseNeon_workspace\\Snake\\src\\view\\CierreSeguro.fxml"));
+				"file:\\C:\\Users\\ljane\\OneDrive\\Documentos\\Programas de eclipse\\SnakeGame_Osma_Santi_Naty_JulianC\\src\\view\\CierreSeguro.fxml"));
 	}
 
 	public Stage getPrimaryStage() {

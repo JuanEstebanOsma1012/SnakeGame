@@ -3,6 +3,8 @@ package controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javax.swing.JOptionPane;
+
 import auxiliaresGraficos.GraphicMap;
 import enums.Direccion;
 import exceptions.GameOverException;
@@ -55,7 +57,10 @@ public class JuegoController implements Initializable {
 
 			try {
 				map.moverSnake();
+				actualizarPuntuacion ();
 				gm.restartGraphicMap();
+				
+				
 			} catch (GameOverException e1) {
 				
 				finalizarJuego();
@@ -74,24 +79,24 @@ public class JuegoController implements Initializable {
 		startGame.setDisable(true);
 
 		timeline.play();
-
+		
 	}
 
 	private void finalizarJuego() {
 
-		System.out.println("hola mundo");
+		JOptionPane.showMessageDialog(null, "GAME OVER");
 
 	}
 
 	private void setearEventoTeclado(ActionEvent event) {
-
+		
 		((Node) event.getSource()).getScene().setOnKeyReleased(new EventHandler<KeyEvent>() {
-
+			
 			@Override
 			public void handle(KeyEvent event) {
 
 				String tecla = event.getText();
-
+				
 				switch (tecla) {
 				case "w":
 					direccionAux = Direccion.ARRIBA;
@@ -110,7 +115,7 @@ public class JuegoController implements Initializable {
 					break;
 
 				}
-
+				
 			}
 		});
 
@@ -130,6 +135,15 @@ public class JuegoController implements Initializable {
 
 	public Map getMap() {
 		return map;
+	}
+	
+	public void actualizarPuntuacion (){
+		
+			
+			Integer puntosActuales = map.getCantidadPuntos();
+			String puntosAux = puntosActuales.toString();
+			LblPuntos.setText(puntosAux);
+		
 	}
 
 }
