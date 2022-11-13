@@ -76,7 +76,7 @@
          <effect>
             <Glow level="1.0" />
          </effect></Label>
-      <Label layoutX="17.0" layoutY="97.0" text="Control de velocidad de la culebra:">
+      <Label layoutX="13.0" layoutY="84.0" text="Control de velocidad de la culebra:">
          <font>
             <Font name="Consolas" size="24.0" />
          </font>
@@ -133,7 +133,7 @@
             <InnerShadow />
          </effect></Button>
       <Button fx:id="btnVolver" layoutX="385.0" layoutY="837.0" mnemonicParsing="false" onAction="#volverAction" text="Volvér" />
-      <ChoiceBox fx:id="choiseVelocidad" layoutX="499.0" layoutY="96.0" prefHeight="31.0" prefWidth="313.0" />
+      <ChoiceBox fx:id="choiseVelocidad" layoutX="493.0" layoutY="67.0" prefHeight="31.0" prefWidth="313.0" />
       <ChoiceBox fx:id="choiseUsuario" layoutX="278.0" layoutY="478.0" prefHeight="31.0" prefWidth="227.0" />
       <Button fx:id="btnSeleccionarPerfil" layoutX="520.0" layoutY="477.0" mnemonicParsing="false" onAction="#seleccionarPerfilAction" text="Cargar Perfil seleccionado y volver al menú">
          <effect>
@@ -204,5 +204,10 @@
          </font>
       </Label>
       <Separator layoutX="32.0" layoutY="619.0" prefHeight="3.0" prefWidth="781.0" />
+      <Button fx:id="btnAplicarVelocidad" layoutX="582.0" layoutY="115.0" mnemonicParsing="false" onAction="#aplicarVelocidadAction" text="Aplicar Velocidad">
+         <effect>
+            <InnerShadow />
+         </effect>
+      </Button>
    </children>
 </AnchorPane>

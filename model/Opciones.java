@@ -94,14 +94,14 @@ public class Opciones {
 		
 		int vel = 0;
 		if (velocidad == 1){
-			vel =200;
+			vel =175;
 		}
 		
 		if (velocidad == 2){
-			vel =300;
+			vel =150;
 		}
 		if (velocidad == 3){
-			vel =400;
+			vel =125;
 		}
 		this.velocidad = vel;
 	}

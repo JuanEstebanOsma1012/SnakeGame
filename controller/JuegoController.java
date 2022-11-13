@@ -59,7 +59,7 @@ public class JuegoController implements Initializable {
 
 		gm.restartGraphicMap();
 		
-		timeline = new Timeline(new KeyFrame(Duration.millis(singleton.getVelocidad()), e -> {
+		timeline = new Timeline(new KeyFrame(Duration.millis(singleton.getOpciones().getVelocidad()), e -> {
 
 			map.setearDireccionCulebra(direccionAux);
 

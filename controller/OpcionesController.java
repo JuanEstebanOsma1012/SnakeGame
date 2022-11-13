@@ -37,6 +37,9 @@ public class OpcionesController {
     private TextField txtNombreNuevoUsuario;
 
     @FXML
+    private Button btnAplicarVelocidad;
+    
+    @FXML
     private Button btnVolver;
 
     @FXML
@@ -186,6 +189,18 @@ public class OpcionesController {
 
 		}
 	}
+	
+	@FXML
+    void aplicarVelocidadAction(ActionEvent event) {
+		int velocidad = 0;
+		String valor = (String) choiseVelocidad.getValue();
+		if (valor != null){
+			velocidad = Integer.parseInt(valor);
+			opciones.setVelocidad(velocidad);
+		}
+		
+		
+    }
 
 	@FXML
 	    void initialize() {
@@ -205,6 +220,9 @@ public class OpcionesController {
 	        }
 	        
 	        actualizarChoice(opciones.getListaUsuarios(), temp);
+	        
+	        choiseVelocidad.getItems().addAll("1","2","3");
+	        
 	    }
 }
 	

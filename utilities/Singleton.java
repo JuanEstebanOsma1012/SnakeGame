@@ -16,7 +16,7 @@ public class Singleton {
 	GameWindowsManager game;
 	MejoresPuntuaciones mejoresPuntuaciones = new MejoresPuntuaciones();
 	Opciones opciones = new Opciones();
-	private int velocidad = opciones.getVelocidad();
+	
 	
 	
 	
@@ -58,12 +58,7 @@ public class Singleton {
 		return mejoresPuntuaciones;
 	}
 	
-	public int getVelocidad (){
-		return velocidad;
-	}
-	public void setVelocidad (int velocidad){
-		this.velocidad= velocidad;
-	}
+	
 	
 
 

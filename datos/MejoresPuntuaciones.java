@@ -56,7 +56,7 @@ public class MejoresPuntuaciones {
 		try {
 			// nuevamente poner aquí la ruta donde tenga el proyecto... hasta llegar a Puntuacion.txt
             FileWriter fileWriter = new FileWriter("C:\\Users\\ljane\\OneDrive\\Documentos\\Programas de eclipse\\SnakeGame_Osma_Santi_Naty_JulianC\\src\\datos\\Puntuacion.txt",true);
-            fileWriter.write(usuario + " "+textoEscritura+"\n");
+            fileWriter.write(usuario + " "+ " Con " + textoEscritura+" puntos "+"\n");
             fileWriter.close();
             
             
