@@ -105,7 +105,7 @@ public class JuegoController implements Initializable {
 		Integer puntuacionFinal = map.getCantidadPuntos();
 		String puntuacionFinalAux = puntuacionFinal.toString();
 		mejoresPuntuaciones.setTextoEscritura(puntuacionFinalAux);
-		mejoresPuntuaciones.guardarPuntuaciones();
+		mejoresPuntuaciones.guardarPuntuaciones(singleton.getOpciones().getUsuarioSeleccionado().getName());
 		
 	}
 

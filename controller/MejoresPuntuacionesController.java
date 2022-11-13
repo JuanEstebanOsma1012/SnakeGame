@@ -1,6 +1,7 @@
 package controller;
 
-	import java.net.URL;
+	import java.io.IOException;
+import java.net.URL;
 	import java.util.ResourceBundle;
 
 import datos.MejoresPuntuaciones;
@@ -33,10 +34,21 @@ public class MejoresPuntuacionesController {
 
 	    @FXML
 	    void volverAction(ActionEvent event) {
-
+	    	volver();
 	    }
 
-	    @FXML
+	    private void volver() {
+			try {
+				singleton.getGame().switchToMenu();
+				singleton.getGame().cerrarCierreSeguro();
+			} catch (IOException e) {
+				singleton.getGame().errorFatal();
+				e.printStackTrace();
+			}
+		}
+
+
+		@FXML
 	    void initialize() {
 	        assert btnVolverPuntiacion != null : "fx:id=\"btnVolverPuntiacion\" was not injected: check your FXML file 'MejoresPuntuaciones.fxml'.";
 	        assert txtAreaPuntuacion != null : "fx:id=\"txtAreaPuntuacion\" was not injected: check your FXML file 'MejoresPuntuaciones.fxml'.";

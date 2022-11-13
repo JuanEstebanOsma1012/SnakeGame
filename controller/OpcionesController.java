@@ -150,6 +150,8 @@ public class OpcionesController {
     		opciones.eliminarUsuario(valor);
     		actualizarChoice(opciones.getListaUsuarios(), "usuario sin definir");
     		opciones.setUsuarioSeleccionado(null);
+			}else{
+				JOptionPane.showMessageDialog(null, "no hay ningún perfil seleccionado");
 			}
     	}
 		

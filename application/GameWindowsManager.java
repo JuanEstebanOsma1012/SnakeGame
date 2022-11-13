@@ -28,6 +28,7 @@ public class GameWindowsManager {
 	FXMLLoader gameLoader;
 	FXMLLoader opcionesLoader;
 	FXMLLoader cierreSeguroLoader;
+	FXMLLoader mejoresPuntuacionesLoader;
 
 	public GameWindowsManager(Stage primaryStage) throws MalformedURLException {
 
@@ -39,6 +40,8 @@ public class GameWindowsManager {
 				"file:\\C:\\Users\\ljane\\OneDrive\\Documentos\\Programas de eclipse\\SnakeGame_Osma_Santi_Naty_JulianC\\src\\view\\CierreSeguro.fxml"));
 		opcionesLoader = new FXMLLoader(new URL(
 				"file:\\C:\\Users\\ljane\\OneDrive\\Documentos\\Programas de eclipse\\SnakeGame_Osma_Santi_Naty_JulianC\\src\\view\\Opciones.fxml"));
+		mejoresPuntuacionesLoader = new FXMLLoader(new URL(
+				"file:\\C:\\Users\\ljane\\OneDrive\\Documentos\\Programas de eclipse\\SnakeGame_Osma_Santi_Naty_JulianC\\src\\view\\MejoresPuntuaciones.fxml"));
 		
 		
 		
@@ -68,6 +71,11 @@ public class GameWindowsManager {
 	public void restartOpcionesLoader() throws MalformedURLException {
 		opcionesLoader = new FXMLLoader(new URL(
 				"file:\\C:\\Users\\ljane\\OneDrive\\Documentos\\Programas de eclipse\\SnakeGame_Osma_Santi_Naty_JulianC\\src\\view\\Opciones.fxml"));
+	}
+	
+	public void restartMejoresPuntuacionesLoader() throws MalformedURLException {
+		mejoresPuntuacionesLoader = new FXMLLoader(new URL(
+				"file:\\C:\\Users\\ljane\\OneDrive\\Documentos\\Programas de eclipse\\SnakeGame_Osma_Santi_Naty_JulianC\\src\\view\\MejoresPuntuaciones.fxml"));
 	}
 
 	public Stage getPrimaryStage() {
@@ -154,6 +162,20 @@ public class GameWindowsManager {
 			limpiarEventoCierreSeguro();
 			
 		}
+	}
+	public void switchToMejoresPuntuaciones() throws IOException {
+
+		if (primaryStage != null && mejoresPuntuacionesLoader != null) {
+
+			restartMejoresPuntuacionesLoader();
+
+			Scene scene = new Scene((Parent) mejoresPuntuacionesLoader.load());
+			primaryStage.setScene(scene);
+			primaryStage.centerOnScreen();
+
+			limpiarEventoCierreSeguro();
+		}
+
 	}
 	
 	

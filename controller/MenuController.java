@@ -67,7 +67,12 @@ public class MenuController implements Initializable {
 
 	@FXML
 	void mejoresPuntuaciones(ActionEvent event) {
-
+		try {
+			singleton.getGame().switchToMejoresPuntuaciones();
+		} catch (IOException e) {
+			System.out.println("error al ir a MejoresPuntuaciones");
+			e.printStackTrace();
+		}
 	}
 	
 	private void continuarJuegoAction() throws ClassNotFoundException, JuegoNoGuardadoException {
