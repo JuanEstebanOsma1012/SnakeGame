@@ -1,8 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1">
-	<!-- TODO Add Nodes -->
+<AnchorPane prefHeight="570.0" prefWidth="599.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MejoresPuntuacionesController">
+   <children>
+      <Label layoutX="173.0" layoutY="14.0" text="Récords en puntuación">
+         <font>
+            <Font name="Arial Narrow" size="30.0" />
+         </font>
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#110b0b" />
+                  <Stop color="#10e448" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Label>
+      <Separator layoutX="21.0" layoutY="66.0" prefHeight="3.0" prefWidth="559.0" />
+      <TextArea fx:id="txtAreaPuntuacion" layoutX="21.0" layoutY="76.0" prefHeight="433.0" prefWidth="559.0" text="Por ahora no hay Récords" />
+      <Button fx:id="btnVolverPuntiacion" layoutX="231.0" layoutY="519.0" mnemonicParsing="false" onAction="#volverAction" text="Volvér al menú">
+         <font>
+            <Font name="Arial Narrow" size="20.0" />
+         </font>
+         <effect>
+            <DropShadow />
+         </effect>
+      </Button>
+   </children>
 </AnchorPane>
-

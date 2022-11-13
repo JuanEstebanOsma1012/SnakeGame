@@ -1,15 +1,26 @@
 package utilities;
 
+import java.util.ArrayList;
+
 import application.GameWindowsManager;
+import datos.MejoresPuntuaciones;
 import javafx.stage.Stage;
 import model.Map;
+import model.Opciones;
 import model.Snake;
+import model.User;
 
 public class Singleton {
 
 	Map map;
 	GameWindowsManager game;
-
+	MejoresPuntuaciones mejoresPuntuaciones = new MejoresPuntuaciones();
+	Opciones opciones = new Opciones();
+	
+	
+	
+	
+	
 	// ------------------------------ Singleton
 	// ------------------------------------------------
 	// Clase estatica oculta. Tan solo se instanciara el singleton una vez
@@ -42,4 +53,22 @@ public class Singleton {
 	public Map getMap(){
 		return map;
 	}
+	
+	public MejoresPuntuaciones getMejoresPuntuaciones(){
+		return mejoresPuntuaciones;
+	}
+	
+	
+	
+
+
+	public Opciones getOpciones() {
+		return opciones;
+	}
+
+	public void setOpciones(Opciones opciones) {
+		this.opciones = opciones;
+	}
+	
+	
 }

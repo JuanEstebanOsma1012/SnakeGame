@@ -3,7 +3,10 @@ package controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javax.swing.JOptionPane;
+
 import auxiliaresGraficos.GraphicMap;
+import datos.MejoresPuntuaciones;
 import enums.Direccion;
 import exceptions.GameOverException;
 import javafx.animation.Timeline;
@@ -21,9 +24,13 @@ import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import model.Map;
 import model.Snake;
+import utilities.Singleton;
 
 public class JuegoController implements Initializable {
-
+	
+	Singleton singleton = Singleton.getInstance();
+	MejoresPuntuaciones mejoresPuntuaciones = singleton.getMejoresPuntuaciones();
+	
 	Map map = new Map(new Snake());
 	
 	GraphicMap gm;
@@ -38,28 +45,35 @@ public class JuegoController implements Initializable {
 
 	@FXML
 	private Label LblPuntos;
-
+	
+	@FXML
+	private Label lblPlayer;
+	
 	@FXML
 	private Button startGame;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		
+		lblPlayer.setText(singleton.getOpciones().getUsuarioSeleccionado().getName());
 		gm = new GraphicMap(mapaJuego, map);
 
 		gm.restartGraphicMap();
 		
-		timeline = new Timeline(new KeyFrame(Duration.millis(200), e -> {
+		timeline = new Timeline(new KeyFrame(Duration.millis(singleton.getOpciones().getVelocidad()), e -> {
 
 			map.setearDireccionCulebra(direccionAux);
 
 			try {
 				map.moverSnake();
+				actualizarPuntuacion ();
 				gm.restartGraphicMap();
+				
+				
 			} catch (GameOverException e1) {
 				
 				finalizarJuego();
 				timeline.stop();
+				guardarPuntos();
 			}
 
 		}));
@@ -74,24 +88,36 @@ public class JuegoController implements Initializable {
 		startGame.setDisable(true);
 
 		timeline.play();
-
+		
 	}
 
 	private void finalizarJuego() {
-
-		System.out.println("hola mundo");
+		
+		
+		
+		
+		JOptionPane.showMessageDialog(null, "GAME OVER");
+		
 
 	}
 
+	private void guardarPuntos() {
+		Integer puntuacionFinal = map.getCantidadPuntos();
+		String puntuacionFinalAux = puntuacionFinal.toString();
+		mejoresPuntuaciones.setTextoEscritura(puntuacionFinalAux);
+		mejoresPuntuaciones.guardarPuntuaciones(singleton.getOpciones().getUsuarioSeleccionado().getName());
+		
+	}
+
 	private void setearEventoTeclado(ActionEvent event) {
-
+		
 		((Node) event.getSource()).getScene().setOnKeyReleased(new EventHandler<KeyEvent>() {
-
+			
 			@Override
 			public void handle(KeyEvent event) {
 
 				String tecla = event.getText();
-
+				
 				switch (tecla) {
 				case "w":
 					direccionAux = Direccion.ARRIBA;
@@ -110,7 +136,7 @@ public class JuegoController implements Initializable {
 					break;
 
 				}
-
+				
 			}
 		});
 
@@ -130,6 +156,15 @@ public class JuegoController implements Initializable {
 
 	public Map getMap() {
 		return map;
+	}
+	
+	public void actualizarPuntuacion (){
+		
+			
+			Integer puntosActuales = map.getCantidadPuntos();
+			String puntosAux = puntosActuales.toString();
+			LblPuntos.setText(puntosAux);
+		
 	}
 
 }

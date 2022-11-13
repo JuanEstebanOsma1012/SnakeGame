@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.paint.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.canvas.*?>
 <?import javafx.scene.control.*?>
@@ -10,10 +13,44 @@
 
 <Group xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.JuegoController">
    <children>
-      <Label layoutX="309.0" layoutY="26.0" text="Snake Game" />
-      <Label layoutX="41.0" layoutY="26.0" text="Puntos" />
-      <Label fx:id="LblPuntos" layoutX="41.0" layoutY="47.0" text="00" />
-      <Button fx:id="startGame" layoutX="556.0" layoutY="21.0" mnemonicParsing="false" onAction="#empezarJuego" text="Start game" />
+      <Label layoutX="309.0" layoutY="26.0" text="Snake Game">
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#1fc8e0" />
+                  <Stop color="#2be140" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill></Label>
+      <Label layoutX="41.0" layoutY="26.0" text="Puntos">
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#e3951e" />
+                  <Stop color="#98a80c" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+         <font>
+            <Font name="Consolas" size="19.0" />
+         </font></Label>
+      <Label fx:id="LblPuntos" layoutX="41.0" layoutY="47.0" text="00">
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#de1f1f" />
+                  <Stop color="#830707" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill></Label>
+      <Button fx:id="startGame" layoutX="555.0" layoutY="19.0" mnemonicParsing="false" onAction="#empezarJuego" text="Start game">
+         <font>
+            <Font name="Consolas" size="19.0" />
+         </font>
+         <effect>
+            <DropShadow color="#0fffdc" />
+         </effect></Button>
       <Canvas fx:id="mapaJuego" height="700.0" layoutY="109.0" width="700.0" />
+      <Label fx:id="lblPlayer" layoutX="184.0" layoutY="27.0" text="player" />
    </children>
 </Group>
